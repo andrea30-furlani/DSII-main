@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 // import {createUserWithEmailAndPassword } from "firebase/auth";
 // import { auth } from '../config/firebase';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
+interface RegistrarProps {
+  navigation:NavigationProp<ParamListBase>;
+} 
 const PlaceholderImage = require('../component/image/usuario.png');
 
-const Registrar = ({navigation}) => {
+const Registrar =({navigation}: RegistrarProps) => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
@@ -23,37 +27,37 @@ const Registrar = ({navigation}) => {
        alert("Senha informada estão divergente, \n tente novamente!")
        return
     }
-    //
-    createUserWithEmailAndPassword( auth, email,  senha, telefone)
-    .then( (userCredential)=> {
-        const user =  userCredential.user;
-        //console.log(user)
-        //
-        navigation.navigate('Login')
-    } )
-    .catch( (error)=> {
-      const errocode = error.code ;
-      const errormsg = error.message ;
-      // console.log( errocode );
-      // console.log( errormsg );
-      switch (errocode) {
-        case 'auth/email-already-in-use':
-          alert( "Email já esta em utilização !") ; 
-          return null
-        case 'auth/invalid-email':
-          alert( "Email invalido!") ; 
-          return null 
-        default:
-          alert( "falha ao registrar o usuario !") ; 
-          return null  
-      }    
-      navigation.navigate('Login')
-    } );
+    
+    // createUserWithEmailAndPassword( auth, email,  senha, telefone)
+    // .then( (userCredential)=> {
+    //     const user =  userCredential.user;
+    //     console.log(user)
+        
+    //     navigation.navigate('Login')
+    // } )
+    // .catch( (error)=> {
+    //   const errocode = error.code ;
+    //   const errormsg = error.message ;
+    //   // console.log( errocode );
+    //   // console.log( errormsg );
+    //   switch (errocode) {
+    //     case 'auth/email-already-in-use':
+    //       alert( "Email já esta em utilização !") ; 
+    //       return null
+    //     case 'auth/invalid-email':
+    //       alert( "Email invalido!") ; 
+    //       return null 
+    //     default:
+    //       alert( "falha ao registrar o usuario !") ; 
+    //       return null  
+    //   }    
+    //   navigation.navigate('Login')
+    // } );
      
   }
 
   const onPressRegister = () => {
-    navigation.navigate('Login');
+    navigation.navigate('Registrar');
   }
 
   return (
@@ -93,7 +97,7 @@ const Registrar = ({navigation}) => {
         secureTextEntry={true}
       />
 
-      <View sytle={styles.textocontainer}>
+      <View style={styles.textocontainer}>
           <Text>Já possui conta?
              <Text style={styles.textoCadastro} onPress={onPressRegister}>   Faça o Login
              </Text>
@@ -150,6 +154,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  textoCadastro:{
+    color: 'red',
+    fontSize: 16,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+  textocontainer:{
+    backgroundColor: 'red',
+  }
 });
 
 export default Registrar;

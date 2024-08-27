@@ -3,53 +3,56 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react
 // import { useNavigation } from '@react-navigation/native';
 // import { signInWithEmailAndPassword } from "firebase/auth"
 // import { auth } from '../config/firebase';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
- 
+interface LoginProps {
+  navigation:NavigationProp<ParamListBase>;
+} 
 const PlaceholderImage = require('../component/image/user.png');
 
-const Login = ({navigation}) => {
+const Login = ({navigation}: LoginProps) => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
   const onLoginClick = () => {
     //
-    signInWithEmailAndPassword( auth, nomeUsuario,  senha)
-    .then( (userCredential)=> {
-        const user =  userCredential.user;
+    // signInWithEmailAndPassword( auth, nomeUsuario,  senha)
+    // .then( (userCredential)=> {
+        // const user =  userCredential.user;
         // console.log(user)        //
         // navigation.navigate('Home',
         //   { screen: 'Home',
         //     params: { user: {user}} }, )
-        navigation.push('Login') ;
-    } )
-    .catch( (error)=> {
-      const errocode = error.code ;
-      const errormsg = error.message ;
-      // tratamento das mensagens de erro pelo error.code      
-      switch (errocode) {
-        case 'auth/invalid-credential':
-          alert( "Usuario ou Senha Invalida !") ; 
-          return null
-        case 'auth/missing-password':
-          alert( "Usuario ou Senha em Branco !") ; 
-          return null
-        case 'auth/invalid-email':
-          alert( "Usuario ou Senha em Branco !") ; 
-          return null
-        default:
-          alert( "Ops, Desculpa algo aconteceu,\n tente novamente!") ; 
-      }      
-    } );    
+    //     navigation.push('Login') ;
+    // } )
+    // .catch( (error)=> {
+    //   const errocode = error.code ;
+    //   const errormsg = error.message ;
+    //   // tratamento das mensagens de erro pelo error.code      
+    //   switch (errocode) {
+    //     case 'auth/invalid-credential':
+    //       alert( "Usuario ou Senha Invalida !") ; 
+    //       return null
+    //     case 'auth/missing-password':
+    //       alert( "Usuario ou Senha em Branco !") ; 
+    //       return null
+    //     case 'auth/invalid-email':
+    //       alert( "Usuario ou Senha em Branco !") ; 
+    //       return null
+    //     default:
+    //       alert( "Ops, Desculpa algo aconteceu,\n tente novamente!") ; 
+    //   }      
+    // } );    
   }
 
   const onPressRegister = () => {
-    navigation.navigate('Registrar')
+    navigation.navigate('Login')
   }
 
   return (
     <View style={styles.container}>
             <Image source={PlaceholderImage} style={styles.image} />
-            <Text style={styles.titulo}>Login Aula 20/05/24</Text>
+            <Text style={styles.titulo}>Aula 27/08/24</Text>
       <TextInput
         style={styles.input}
         placeholder="Nome de Usuário"
@@ -64,7 +67,7 @@ const Login = ({navigation}) => {
         secureTextEntry={true}
       />
       
-      <View sytle={styles.textocontainer}>
+      <View style={styles.textocontainer}>
           <Text>Não possui conta?
              <Text style={styles.textoCadastro} onPress={onPressRegister}>   Faça o cadastro
              </Text>
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   botao: {
-    backgroundColor: 'orange',
+    backgroundColor: 'blue',
     width: '75%',
     height: 50,
     justifyContent: 'center',
