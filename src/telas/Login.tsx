@@ -8,7 +8,7 @@ import { NavigationProp, ParamListBase } from '@react-navigation/native';
 interface LoginProps {
   navigation:NavigationProp<ParamListBase>;
 } 
-const PlaceholderImage = require('../component/image/user.png');
+const PlaceholderImage = require('../component/image/girl.png');
 
 const Login = ({navigation}: LoginProps) => {
   const [nomeUsuario, setNomeUsuario] = useState('');
@@ -52,7 +52,7 @@ const Login = ({navigation}: LoginProps) => {
   return (
     <View style={styles.container}>
             <Image source={PlaceholderImage} style={styles.image} />
-            <Text style={styles.titulo}>Aula 27/08/24</Text>
+            <Text style={styles.titulo}>Aula 03/09/24</Text>
       <TextInput
         style={styles.input}
         placeholder="Nome de Usuário"
@@ -67,7 +67,7 @@ const Login = ({navigation}: LoginProps) => {
         secureTextEntry={true}
       />
       
-      <View style={styles.textocontainer}>
+      <View >
           <Text>Não possui conta?
              <Text style={styles.textoCadastro} onPress={onPressRegister}>   Faça o cadastro
              </Text>
@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     padding: 10,
   },
-  textocontainer:{
-    backgroundColor: 'red',
-  }
+  // textocontainer:{
+  //   backgroundColor: 'red',
+  // }
 });
 
 export default Login;

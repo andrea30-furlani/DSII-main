@@ -8,7 +8,7 @@ import Home from '../telas/Home';
 //  configurar  - <Stack.Screen name="Home" component={Home}/>
 const Stack = createStackNavigator();
 
-export default function StackNavigator() {
+export default function AppRoutes() {
   return ( 
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Login" component={Login} />
